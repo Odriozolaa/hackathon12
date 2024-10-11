@@ -4,3 +4,4 @@ SQLAlchemy==2.0.15
 pydantic==1.10.7
 oauthlib==3.2.2
 passlib[bcrypt]==1.7.4
+pyodbc==4.0.32

@@ -48,4 +48,4 @@ class Product(Base):
     name = Column(String)
     category = Column(String)
     description = Column(String)
-    recommended_for = Column(String)
+    recommended_for = Column(String)    
