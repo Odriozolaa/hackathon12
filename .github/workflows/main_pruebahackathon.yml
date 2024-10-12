@@ -23,9 +23,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y g++ unixodbc-dev
-          # Instalación de los controladores ODBC de Microsoft
+          # Descargar e instalar los controladores ODBC de Microsoft
           curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-          curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+          curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
           sudo apt-get update
           sudo ACCEPT_EULA=Y apt-get install -y msodbcsql17
 
@@ -72,5 +72,4 @@ jobs:
           app-name: 'pruebahackathon'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
-
 
