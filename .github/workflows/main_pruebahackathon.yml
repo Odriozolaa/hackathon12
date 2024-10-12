@@ -46,9 +46,14 @@ jobs:
           name: python-app
           path: /tmp
 
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'pruebahackathon'  # Nombre de tu App Service en Azure
           slot-name: 'Production'       # Nombre del slot de despliegue (opcional)
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB615DAA3C1844E087A }}  # Debes configurar esto en los secretos de tu repositorio
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB615DAA3C1844E087AB710FCDA18D11 }}  # Debes configurar esto en los secretos de tu repositorio
