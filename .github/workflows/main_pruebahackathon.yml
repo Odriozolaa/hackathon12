@@ -18,11 +18,16 @@ jobs:
         with:
           python-version: '3.11'
 
-      # Instalar dependencias del sistema necesarias para pyodbc
+      # Instalar dependencias del sistema necesarias para pyodbc y el controlador de Microsoft ODBC
       - name: Install system dependencies for pyodbc
         run: |
           sudo apt-get update
           sudo apt-get install -y g++ unixodbc-dev
+          # Instalación de los controladores ODBC de Microsoft
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y msodbcsql17
 
       - name: Create and start virtual environment
         run: |
@@ -67,4 +72,5 @@ jobs:
           app-name: 'pruebahackathon'
           slot-name: 'production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+
 
