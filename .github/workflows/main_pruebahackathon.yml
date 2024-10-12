@@ -28,7 +28,7 @@ jobs:
         run: zip -r release.zip .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: release.zip
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: python-app
           path: /tmp
@@ -49,6 +49,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'pruebahackathon'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          app-name: 'pruebahackathon'  # Nombre de tu App Service en Azure
+          slot-name: 'Production'       # Nombre del slot de despliegue (opcional)
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB615DAA3C1844E087A }}  # Debes configurar esto en los secretos de tu repositorio
